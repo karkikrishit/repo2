@@ -1,0 +1,13 @@
+---
+- hosts: dbserver
+  become: yes
+  tasks:
+    - name: create group
+      group:
+        name: ansiblegrp
+    - name: create user
+      user:
+        name: ansibletest
+        group: ansiblegrp
+        state: present
+   
