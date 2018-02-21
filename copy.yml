@@ -1,0 +1,8 @@
+---
+- hosts: dbserver
+  become: yes
+  tasks:
+    - name: copy file from source to remote destination
+      copy:
+        src: /home/ansible/tstfle
+        dest: /home/ansible/
