@@ -1,6 +1,9 @@
 ---
 - hosts: dbserver
   become: yes
+  gather_facts: no
+  vars:
+    password: $6$HW3NugZa$HrJHy/1Zv4cDi1oCa7pltvdAln/kojM8J5atzGjUEWaCWSHYKXI7vYku1iQn5feldxQ5lQh2HnClttha2Zcj/1 
   tasks:
     - name: create group
       group:
@@ -10,4 +13,4 @@
         name: ansibletest
         group: ansiblegrp
         state: present
-   
+        password: "{{ password }}" 
