@@ -1,0 +1,9 @@
+---
+- hosts: 192.168.1.11
+  become: yes
+  gather_facts: yes
+  tasks:
+   - name: install apache on rhel box
+     yum: name=httpd state=present
+   - name: start amd enable apache on Ubuntu
+     service: name=httpd state=started enabled=yes
