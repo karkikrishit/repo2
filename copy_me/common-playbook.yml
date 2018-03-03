@@ -1,0 +1,6 @@
+---
+-  name: Install server basics git
+   apt: name={{ item }} state=present update_cache=true
+   with_items:
+    - git
+
