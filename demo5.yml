@@ -1,0 +1,9 @@
+---
+- hosts: rhelserver
+  become: yes
+  vars:
+    serv: httpd
+  tasks:
+    - include_tasks: demo1.yml
+    - name: start httpd service
+      service: name={{ serv }} state=started

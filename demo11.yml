@@ -1,0 +1,18 @@
+---
+- hosts: rhelserver
+  gather_facts: yes
+  become: yes
+  tasks:
+   - name: to show this task is succesful
+     shell: ip a
+     register: reg1
+   - name: output of above task
+     debug: msg="Retrun code is {{ reg1|success }}"
+   - name: a failed example
+     shell: ls /googledir
+     register: reg2
+     ignore_errors: true
+   - name: failed with success filter
+     debug: msg="is it success ?? {{ reg2|success }}"
+   - name: failed with failure filter
+     debug: msg="is it success ?? {{ reg2|failed }}"

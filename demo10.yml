@@ -1,0 +1,12 @@
+---
+- hosts: rhelserver
+  become: yes
+  gather_facts: yes
+  tasks:
+   - name: show how variables can be registered
+     shell: ip a
+     register: reg1
+   - name: display output of above shell cmd stored on register reg1
+     debug: var=reg1
+   - name: the output is
+     debug: msg="the output is {{ reg1 ['stdout_lines'] }}"

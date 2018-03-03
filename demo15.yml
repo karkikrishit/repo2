@@ -1,0 +1,17 @@
+---
+- hosts: rhelserver
+  gather_facts: yes
+  become: yes
+  tasks:
+   - name: check if tstfile2 exist in end node
+     shell: ls /tmp/tstfile2
+     register: reg1
+     ignore_errors: yes
+   - name: display fizz if file exist
+     debug: msg="fizz"
+     when: reg1|success
+   - name: display buzz if file doesn't exist
+     debug: msg="buzz"
+     when: reg1|failed
+   - name: create file if it doesn't exist
+     shell: touch /tmp/tstfile2

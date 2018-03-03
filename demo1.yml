@@ -1,0 +1,4 @@
+---
+- name: Install Apache on rhel7 in local vm and aws 
+  yum: name=httpd state=present
+

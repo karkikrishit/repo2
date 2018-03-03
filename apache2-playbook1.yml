@@ -1,0 +1,22 @@
+--- 
+- hosts: ubuntu
+  gather_facts: yes
+  become: yes
+  vars:
+   - web_dir: /var/www/test1.www/html
+  tasks:
+   - name: install apache2
+     apt: name=apache2 state=present
+     notify:
+      - start apache
+   - name: create web directory
+     file: path={{ web_dir }} state=directory mode=775 owner=ansible group=ansible
+     notify:
+      - restart apache
+  handlers:
+   - name: start apache
+     service: name=apache2 state=started
+   - name: restart apache
+     service: name=apache2 state=restarted
+
+

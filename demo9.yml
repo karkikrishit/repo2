@@ -1,0 +1,10 @@
+---
+- hosts: rhelserver
+  gather_facts: yes
+  become: yes
+  tasks:
+   - name: start httpd service
+     service: name=httpd state=started
+    # ignore_errors: true
+   - name: stop httpd service
+     service: name=httpd statesssss=stopped

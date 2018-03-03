@@ -1,0 +1,19 @@
+---
+- hosts: rhelserver
+  gather_facts: yes
+  become: yes
+  tasks:
+   - name: check is file exists on node machine
+     shell: ls /tmp/tstfile
+     register: reg1
+     ignore_errors: yes
+   - name: display fizz if file exist
+     debug: msg="fizz"
+     when: reg1|success
+   - name: display buzz if file doesn't exist
+     debug: msg="buzz"
+     when: reg1|failed
+   - name: create above file if it doesn't exist
+     shell: touch /tmp/tstfile
+ 
+    

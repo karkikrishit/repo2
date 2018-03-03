@@ -1,0 +1,15 @@
+---
+- hosts: rhelserver
+  become: yes
+  vars:
+    serv: httpd
+  tasks:
+    - include_tasks: demo1.yml
+    - name: start httpd service
+     #debug: msg="going to start apache"
+      shell: echo "going too start apache"
+      notify:
+       - start apache
+  handlers:
+    - name: start apache
+      service: name={{ serv }} state=started
