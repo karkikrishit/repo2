@@ -1,0 +1,28 @@
+---
+- hosts: ubuntu
+  gather_facts: yes
+  become: yes
+  vars:
+   - uname: sam
+  tasks:
+  - name: create group
+    group: name=tstgrp state=present
+  - name: create user
+    user: 
+     name={{ uname }} 
+     group=tstgrp 
+     password=$6$KhKE4.Ta$RVKwp3nq6WHU3ML9QgQzs.MiXeTqlrAuGvG7kD2ZY8DAp5hqItZdgRtNCxzIVYOPOoLVQeK3x6.f5ooVeRKxN0
+  - name: install required software
+    apt: name={{ item }} state=present
+    with_items:
+     - git
+     - htop
+     - unzip
+  - name: create required directory for above user
+    file: path=/home/{{ uname }}/{{ item }} state=directory owner={{ uname }} group={{ uname }} mode=0700
+    with_items:
+     - src
+     - backups
+     - bin
+     - tmp
+  
