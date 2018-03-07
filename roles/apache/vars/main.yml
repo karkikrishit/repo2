@@ -1,2 +1,3 @@
 ---
 # vars file for apache
+  web_dir: /var/www/test.www/web

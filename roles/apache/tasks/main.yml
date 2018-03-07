@@ -1,2 +1,10 @@
 ---
 # tasks file for apache
+- name: Install Apache
+  apt: name=apache2 state=present
+  notify:
+   - start apache
+- name: create directory
+  file: path={{ web_dir }} mode=775 state=directory owner=ansible group=ansible
+  notify:
+   - restart apache
