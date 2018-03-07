@@ -1,2 +1,32 @@
 ---
-# tasks file for template
+- name: install common softwares
+  apt: name={{ item }} state=present
+  with_items:
+   - git
+   - htop
+   - unzip
+
+- name: create group tstgrp1
+  group: name=tstgrp1 state=present
+
+- name: create user hari
+  user:
+   name={{ uname }}
+   group=tstgrp1
+   password=$6$KhKE4.Ta$RVKwp3nq6WHU3ML9QgQzs.MiXeTqlrAuGvG7kD2ZY8DAp5hqItZdgRtNCxzIVYOPOoLVQeK3x6.f5ooVeRKxN0
+
+- name: create directory structures
+  file: path=/home/{{ uname }}/{{ item }} state=directory owner={{ uname }} group=tstgrp1 mode=0700
+  with_items:
+   - src
+   - backups
+   - bin
+   - tmp
+   - dir1
+
+- name: copy files from files in this role named template
+  copy: src={{ item }} dest=/home/{{ uname }}/{{ item }}
+  with_items:
+   - tstfile1.txt
+   - tstfile.txt
+   - dir1/tstfile2.txt
