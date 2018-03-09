@@ -6,3 +6,4 @@
    - uname: ram
   roles:
    - common
+   - singleplatform-eng.users
