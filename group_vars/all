@@ -1,0 +1,22 @@
+---
+# Create a group for every user and make that their primary group
+users_create_per_user_group: true
+
+# If we're not creating a per-user group, then this is the group all users
+# belong to
+users_group: users
+
+# The default shell for a user if none is specified
+users_default_shell: /bin/bash
+
+# Create home dirs for new users? Set this to false if you manage home
+# directories in some other way.
+users_create_homedirs: true
+
+users:
+ - username: rakesh
+   name: rakesh test
+   groups: ['cmgrp']
+   uid: 5040
+   password: $6$J7BwR.hSQVlPaTh$eHDytHRr/O1dJeyO4Y2WjdPnDxCKBsk0YsLjcnshmkW5OB4Dky7ma2ALPX658ElWssdWIpMXKICyGuIN4Bycj.
+

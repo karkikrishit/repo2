@@ -1,0 +1,11 @@
+---
+- name: install common software
+  apt: name={{ item }} state=present
+  with_items:
+   - git
+   - htop
+   - unzip
+
+- name: create group cmgrp
+  group: name=cmgrp state=present
+
